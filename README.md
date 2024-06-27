@@ -4,26 +4,67 @@ Welcome to the King's Cup API, a .NET-based service designed to bring the classi
 
 ## Current Endpoints
 
-### /api/game/draw
+### Welcome Endpoints
+* ***GET*** `/api/welcome` - Show the welcome message.
+* ***GET*** `/api/welcome/rules` - This will return a dictionary of all the rules.
 
-- **GET**: Draw Card.
+### GameController Endpoints
 
-### /api/game/rule/{rank}
+#### GET Requests
+* ***GET*** `/api/game/draw` 
+    - Description: Draws a card from the deck.
+    - Response: The drawn card or a message indicating no more cards in the deck.
+* ***GET*** `/api/game/deck`
+    - Description: Retrieves the remaining cards in the deck.
+    - Response: List of remaining cards.
+* ***GET*** `/api/game/rule/{rank}`
+    - Description: Retrieves the rule for a specific card rank.
+    - Response: The rule for the specified card rank.
+* ***GET*** `/api/game/rules`
+    - Description: Retrieves all the rules of the game.
+    - Response: Dictionary of card ranks and their corresponding rules.
+* ***GET*** `api/game/players`
+    - Description: Retrieves the list of players in the game.
+    - Response: List of players in the game.
+* ***GET*** `api/game/history`
+    - Description: Retrieves the history of drawn cards.
+    - Response: List of drawn cards.
+* ***GET*** `/api/game/player/{name}`
+    - Description: Retrieves details of a specific player.
+    - Response: The player's details.
+* ***GET*** `/api/game/state`
+    - Description: Gets the current state of the game.
+    - Response: Object containing current players, remaining deck, and card draw history.
+* ***GET*** `/api/game/statistics`
+    - Description: Retrieves game statistics such as the most frequently drawn card.
+    - Response: Object containing game statistics.
+* ***GET*** `/api/game/history/{playerName}`
+    - Description: Gets the history of actions taken by a specific player.
+    - Response: List of actions taken by the specified player.
 
-- **GET**: Get rule for a card rank.
+#### Post Requests
+* ***POST** `/api/game/player`
+    - Description: Adds a player to the game.
+    - Request Body: The player's name(string).
+    - Response: Success message
+* ***POST*** `/api/game/reset`
+    - Description: Resets the game, clearing players and reinitializing the deck.
+    - Response: Success message.
+* ***POST*** `/api/game/config`
+    - Description: Configures the game settings.
+    - Request Body: **GameConfig** object containing game configuration details.
+    - Response: Success message.
 
-### /api/game/rule/deck
+#### PUT Requests
+* ***PUT*** `/api/game/player/{oldName}`
+    - Description: Updates a player's name.
+    - Request Body: New player name (string).
+    - Response: Success message.
 
-- **GET**: Current state of the deck
-
-### /api/welcome
-
-- **GET**: Show the welcome message.
-
-### /api/welcome/rules
-
-- **GET**: This will return a dictionary of all the rules.
-
+#### DELETE Requests
+* ***DELETE*** `/api/game/player/{name}`
+    - Description: Removes a player from the game.
+    - Response: Success message.
 
 ## Planned Features
 
